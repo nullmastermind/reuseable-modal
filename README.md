@@ -1,4 +1,6 @@
-<video src='modal.mp4' width=500></video>
+
+## Video
+[![Video](https://img.youtube.com/vi/VIDEO_ID/0.jpg)](https://github.com/nullmastermind/reuseable-modal/blob/master/modal.mp4)
 
 
 ## Run
