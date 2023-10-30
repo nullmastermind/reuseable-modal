@@ -1,40 +1,99 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<video src='modal.mp4' width=500></video>
 
-## Getting Started
 
-First, run the development server:
+## Run
 
 ```bash
-npm run dev
-# or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Usage
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+To use the Modal component, follow these steps:
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+1. Import the Modal component and the `useModal` hook:
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+```javascript
+import Modal from "@/components/Modal";
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+2. Create a functional component to render the modal:
 
-## Learn More
+```javascript
+const DemoModal = () => {
+  const { open, handleOpen, handleClose } = useModal();
 
-To learn more about Next.js, take a look at the following resources:
+  return (
+    <>
+      <Modal open={open} onClose={handleClose}>
+        {/* Modal content goes here */}
+      </Modal>
+      <button onClick={handleOpen}>Open Modal</button>
+    </>
+  );
+};
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. Inside the `Modal` component, you can add the following components:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- `Modal.Title`: Renders the title of the modal. It accepts the `onClose` prop, which is a function to be called when the close button is clicked.
 
-## Deploy on Vercel
+- `Modal.Body`: Renders the body content of the modal.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `Modal.Actions`: Renders the action buttons of the modal.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Here's an example of how to use these components:
+
+```javascript
+<Modal open={open} onClose={handleClose}>
+  <Modal.Title>Modal Title</Modal.Title>
+  <Modal.Body>
+    <div>This is the content of the modal.</div>
+  </Modal.Body>
+  <Modal.Actions>
+    <button onClick={handleClose}>Act 1</button>
+    <button onClick={handleClose}>Act 2</button>
+  </Modal.Actions>
+</Modal>
+```
+
+## Props
+
+The Modal component accepts the following props:
+
+| Prop     | Type     | Description                                      |
+| -------- | -------- | ------------------------------------------------ |
+| open     | boolean  | Determines whether the modal is open or closed.  |
+| onClose  | function | Callback function to be called when modal closes. |
+| children | ReactNode | The content to be rendered inside the modal.      |
+
+## Example
+
+Here's an example of how to use the Modal component:
+
+```javascript
+import Modal from "@/components/Modal";
+import useModal from "@/components/Modal/useModal";
+
+const DemoModal = () => {
+  const { open, handleOpen, handleClose } = useModal();
+
+  return (
+    <>
+      <Modal open={open} onClose={handleClose}>
+        <Modal.Title>Modal Title</Modal.Title>
+        <Modal.Body>
+          <div>This is the content of the modal.</div>
+        </Modal.Body>
+        <Modal.Actions>
+          <button onClick={handleClose}>Act 1</button>
+          <button onClick={handleClose}>Act 2</button>
+        </Modal.Actions>
+      </Modal>
+      <button onClick={handleOpen}>Open Modal</button>
+    </>
+  );
+};
+
+export default DemoModal;
+```
